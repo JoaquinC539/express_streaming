@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/App.css"></link>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello world</h1>
+    <hr>
+    <section>
+        <fieldset>
+            <h3>Imagen de server</h3>
+            <img src="" id="imgServ" alt="imgServ" style="width: 300px; height: 400px;" hidden>
+            <br>
+            <button onclick="askImage()">Ask for image</button>
+        </fieldset>
+    </section>
+    
+    <hr>
+    <section>
+        <fieldset>
+            <h3>Video de server</h3>
+            <video id="videoServ" controls  hidden style="width: 500px; height: 500px;">  </video>
+            <hr>
+            <button onclick="askVideo()" id="askvid">Ask for video</button>
+        </fieldset>
+    </section>
+</body>
+<script type="module" src="/js/index.js"></script>
+</html>
