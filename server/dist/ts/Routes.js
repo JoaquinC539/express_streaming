@@ -8,7 +8,6 @@ const express_1 = require("express");
 const Message_1 = require("./classes/Message");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
-const express_2 = __importDefault(require("express"));
 class Routes {
     constructor() {
         this.router = (0, express_1.Router)();
@@ -27,7 +26,7 @@ class Routes {
         const videoPath = path_1.default.resolve(__dirname, "..", "media", "output.mp4");
         const stat = fs_1.default.statSync(videoPath);
         const fileSize = stat.size;
-        // console.log("FileSize: ",fileSize);
+        console.log("FileSize: ", fileSize);
         res.writeHead(200, {
             "Content-Type": "video/mp4",
             "Content-Length": fileSize
@@ -71,7 +70,6 @@ class Routes {
         this.router.get("/img", (req, res) => this.getImage(req, res));
         this.router.get("/videoSC", (req, res) => this.streamVideo(req, res));
         this.router.get("/videoSCR", (req, res) => this.streamVideoRange(req, res));
-        this.router.use("/videoHls", express_2.default.static(path_1.default.resolve(__dirname, "..", "media", "hls")));
         return this.router;
     }
 }

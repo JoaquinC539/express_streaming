@@ -1,3 +1,4 @@
+"use strict";
 console.log("Hello world");
 function getImage() {
     fetch("http://localhost:4682/api/img")
@@ -22,6 +23,19 @@ function enableVideo() {
     videoElem.src = "http://localhost:4682/api/videoSCR";
     document.getElementById("askvid").disabled = true;
 }
+function enableVideoHls() {
+    const videoElem = document.getElementById("videoHls");
+    videoElem.hidden = false;
+    if (window.Hls.isSupported()) {
+        const hls = new window.Hls();
+        hls.loadSource("http://localhost:4682/api/videoHls/playlist.m3u8");
+        hls.attachMedia(videoElem);
+    }
+    else if (videoElem.canPlayType("application/vnd.apple.mpegurl")) {
+        videoElem.src = "http://localhost:4682/api/videoHls/playlist.m3u8";
+    }
+    document.getElementById("askvidHls").disabled = true;
+}
 window.askImage = () => {
     getImage();
 };
@@ -31,4 +45,6 @@ window.askVideoNoRange = () => {
 window.askVideo = () => {
     enableVideo();
 };
-export {};
+window.askvideoHls = () => {
+    enableVideoHls();
+};

@@ -1,9 +1,8 @@
-import express from 'express';
+import express, { Express } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 const PORT=4682;
-const app=express();
-import { Message } from './classes/Message';
+const app: Express = express();
 import { Routes } from './Routes';
 
 app.use(cors());

@@ -2,6 +2,7 @@ import { Request, Response, Router } from 'express';
 import { Message } from './classes/Message';
 import path from "path";
 import fs from "fs";
+import express,{ Express } from 'express';
 export class Routes{
     private router: Router;
     constructor(){
@@ -19,11 +20,11 @@ export class Routes{
         res.status(200).send(imgStream)
     }
     private streamVideo(req:Request,res:Response){
-        const videoPath = path.resolve(__dirname,"..","media","videoStreamFormat.mp4")
+        const videoPath = path.resolve(__dirname,"..","media","output.mp4")
         const stat= fs.statSync(videoPath);
         const fileSize=stat.size;
 
-        console.log("FileSize: ",fileSize);
+        // console.log("FileSize: ",fileSize);
         
         
         res.writeHead(200,{
@@ -37,7 +38,7 @@ export class Routes{
         const videoPath = path.resolve(__dirname,"..","media","output.mp4")
         const stat= fs.statSync(videoPath);
         const fileSize=stat.size;
-        console.log("FileSizeR: ",fileSize);
+        // console.log("FileSizeR: ",fileSize);
         const range = req.headers.range;
         if(!range){
             res.writeHead(200,{
@@ -48,13 +49,13 @@ export class Routes{
             return;
         }
         // Eg range val bytes=1000-
-        console.log("Range: ",range)
+        // console.log("Range: ",range)
         const parts = range.replace(/bytes=/,"").split("-")
         const start = parseInt(parts[0],10);
         // const end = parts[1] ? parseInt(parts[1],10):fileSize-1;
-        const end = Math.min(start + 1024*1024 - 1, fileSize - 1);
+        const end = Math.min(start + 3*1024*1024 - 1, fileSize - 1);
         const chunkSize= (end-start)+1;
-        console.log("R",chunkSize)
+        // console.log("R",chunkSize)
         const file = fs.createReadStream(videoPath,{start,end});
 
         res.writeHead(206,{
@@ -71,6 +72,8 @@ export class Routes{
         this.router.get("/img",(req,res)=>this.getImage(req,res))
         this.router.get("/videoSC",(req,res)=>this.streamVideo(req,res))
         this.router.get("/videoSCR",(req,res)=>this.streamVideoRange(req,res))
+        this.router.use("/videoHls",express.static(path.resolve(__dirname,"..","media","hls")));
+
         return this.router;
     }
 

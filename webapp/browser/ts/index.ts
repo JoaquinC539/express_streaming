@@ -1,6 +1,4 @@
 console.log("Hello world")
-export {};
-
 
 
 function getImage(){
@@ -26,6 +24,21 @@ function enableVideo(){
     videoElem.src="http://localhost:4682/api/videoSCR";
     (document.getElementById("askvid") as HTMLButtonElement)!.disabled=true;
 }
+function enableVideoHls(){
+    const videoElem=document.getElementById("videoHls") as HTMLVideoElement;
+    videoElem.hidden=false;
+    
+    if(window.Hls.isSupported()){
+        const hls = new window.Hls();
+        hls.loadSource("http://localhost:4682/api/videoHls/playlist.m3u8");
+        hls.attachMedia(videoElem);
+        
+    }else if(videoElem.canPlayType("application/vnd.apple.mpegurl")){
+        videoElem.src="http://localhost:4682/api/videoHls/playlist.m3u8";
+    }
+
+    (document.getElementById("askvidHls") as HTMLButtonElement)!.disabled=true;
+}
 window.askImage=()=>{
     getImage();
 }
@@ -34,4 +47,7 @@ window.askVideoNoRange=()=>{
 }
 window.askVideo=()=>{
     enableVideo()
+}
+window.askvideoHls=()=>{
+    enableVideoHls();
 }

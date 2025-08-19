@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/App.css"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.min.js" integrity="sha512-js37JxjD6gtmJ3N2Qzl9vQm4wcmTilFffk0nTSKzgr3p6aitg73LR205203wTzCCC/NZYO2TAxSa0Lr2VMLQvQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Document</title>
 </head>
 <body>
@@ -34,6 +35,16 @@
             <video id="videoServ" controls  hidden style="width: 500px; height: 500px;">  </video>
             <hr>
             <button onclick="askVideo()" id="askvid">Ask for video</button>
+        </fieldset>
+    </section>
+    <hr>
+    
+    <section>
+        <fieldset>
+            <h3>Video from server HLS</h3>
+            <video id="videoHls" controls  hidden style="width: 500px; height: 500px;">  </video>
+            <hr>
+            <button onclick="askvideoHls()" id="askvidHls">Ask for video</button>
         </fieldset>
     </section>
 </body>
