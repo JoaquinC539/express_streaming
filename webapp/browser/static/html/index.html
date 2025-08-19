@@ -17,11 +17,20 @@
             <button onclick="askImage()">Ask for image</button>
         </fieldset>
     </section>
-    
     <hr>
     <section>
         <fieldset>
-            <h3>Video de server</h3>
+            <h3>Video de server stream</h3>
+            <video id="videoServS" controls  hidden style="width: 500px; height: 500px;">  </video>
+            <hr>
+            <button onclick="askVideoNoRange()" id="askvidS">Ask for video</button>
+        </fieldset>
+    </section>
+    <hr>
+    
+    <section>
+        <fieldset>
+            <h3>Video de server stream range</h3>
             <video id="videoServ" controls  hidden style="width: 500px; height: 500px;">  </video>
             <hr>
             <button onclick="askVideo()" id="askvid">Ask for video</button>

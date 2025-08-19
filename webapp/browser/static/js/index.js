@@ -10,14 +10,23 @@ function getImage() {
         imgElem.src = url;
     });
 }
+function enableVideoSR() {
+    const videoElem = document.getElementById("videoServS");
+    videoElem.hidden = false;
+    videoElem.src = "http://localhost:4682/api/videoSC";
+    document.getElementById("askvidS").disabled = true;
+}
 function enableVideo() {
     const videoElem = document.getElementById("videoServ");
     videoElem.hidden = false;
-    videoElem.src = "http://localhost:4682/api/videoSC";
+    videoElem.src = "http://localhost:4682/api/videoSCR";
     document.getElementById("askvid").disabled = true;
 }
 window.askImage = () => {
     getImage();
+};
+window.askVideoNoRange = () => {
+    enableVideoSR();
 };
 window.askVideo = () => {
     enableVideo();

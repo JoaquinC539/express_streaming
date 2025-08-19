@@ -3,5 +3,6 @@ declare global {
     interface Window {
         askImage: () => void;
         askVideo: () => void;
+        askVideoNoRange: () => void
     }
 }

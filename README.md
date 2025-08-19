@@ -3,5 +3,6 @@
     <hr>
     <p>For videos it requires ffmpeg conversion to be able to be readen by browsers:</p>
     <!-- <code>ffmpeg -i video.mp4 -movflags frag_keyframe+empty_moov+default_base_moof -f mp4 output_frag.mp4</code> -->
-    <code>ffmpeg -i video.mp4 -movflags frag_keyframe+empty_moov+default_base_moof+faststart -c copy -f mp4 output_frag.mp4</code>
+    <code>ffmpeg -i video.mp4 -movflags frag_keyframe+empty_moov+default_base_moof+faststart -c copy -f mp4 output_frag.mp4</code> Web socket one or HLS/DASH
+    <code>ffmpeg -i video.mp4 -movflags +faststart -c copy output.mp4</code> Normal video in http for basic servicing
 </section>
